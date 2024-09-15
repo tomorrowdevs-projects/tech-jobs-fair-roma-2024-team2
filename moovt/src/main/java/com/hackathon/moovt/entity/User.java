@@ -17,7 +17,6 @@ public class User {
     private int id;
     private String password;
 
-    private int weight;
     private String name;
     private String email;
 
