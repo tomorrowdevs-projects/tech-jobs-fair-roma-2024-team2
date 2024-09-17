@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { LoginComponent } from './login/login.component'; // Importa il componente desiderato
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import {DashboardComponent} from "./pages/dashboard/dashboard.component"; // Importa il guard
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Rotta predefinita
-  // { path: 'home', component: LoginComponent } // Rotta per LoginComponent
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] } // Rotta protetta dalla guard
 ];
 
 @NgModule({

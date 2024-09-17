@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="login-container">
+  <h2 *ngIf="!isRegisterMode; else registerTitle">Login</h2>
+  <ng-template #registerTitle>
+    <h2>Registrazione</h2>
+  </ng-template>
+
+  <form (ngSubmit)="onLogin()">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" [(ngModel)]="username" name="username" required>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" required>
+    </div>
+
+    <!-- Campo di conferma password visibile solo in modalità registrazione -->
+    <div *ngIf="isRegisterMode">
+      <label for="confirmPassword">Conferma Password:</label>
+      <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+    </div>
+
+    <button type="submit" [disabled]="!username || !password">
+      {{ isRegisterMode ? 'Registrati' : 'Login' }}
+    </button>
+  </form>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+  <p>
+    <a (click)="toggleMode()">
+      {{ isRegisterMode ? 'Hai già un account? Accedi' : 'Non hai un account? Registrati' }}
+    </a>
+  </p>
+</div>
