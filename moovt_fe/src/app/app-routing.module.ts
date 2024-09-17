@@ -7,7 +7,7 @@ import {DashboardComponent} from "./pages/dashboard/dashboard.component"; // Imp
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] } // Rotta protetta dalla guard
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] } // Rotta protetta dalla guard
 ];
 
 @NgModule({

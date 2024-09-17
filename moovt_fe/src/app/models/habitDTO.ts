@@ -5,3 +5,5 @@ export interface HabitDTO {
 export const HABIT_CATEGORY_CONST = {
   HEALTH: "HEALTH"
 }
+
+

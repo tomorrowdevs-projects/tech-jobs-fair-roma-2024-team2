@@ -5,25 +5,25 @@
   </ng-template>
 
   <form (ngSubmit)="onLogin()">
-    <div>
-      <label for="username">Username:</label>
-      <input type="text" id="username" [(ngModel)]="username" name="username" required>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username"[(ngModel)]="username" name="username" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
     </div>
 
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" [(ngModel)]="password" name="password" required>
-    </div>
 
-    <!-- Campo di conferma password visibile solo in modalità registrazione -->
-    <div *ngIf="isRegisterMode">
+    <div *ngIf="isRegisterMode" class="mb-3">
       <label for="confirmPassword">Conferma Password:</label>
-      <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+      <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
     </div>
 
-    <button type="submit" [disabled]="!username || !password">
+    <button type="submit" class="btn btn-primary"  [disabled]="!username || !password">
       {{ isRegisterMode ? 'Registrati' : 'Login' }}
     </button>
+
   </form>
 
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>

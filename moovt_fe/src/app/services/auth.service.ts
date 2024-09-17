@@ -29,7 +29,7 @@ export class AuthService {
     if (!userExists) {
       this.users.push({ username, password });
       this.isAuthenticated = true;
-      this.router.navigate(['/home']); // Redirige dopo la registrazione
+      this.router.navigate(['/dashboard']); // Redirige dopo la registrazione
       return true;
     }
     return false; // Restituisce false se l'utente esiste già
