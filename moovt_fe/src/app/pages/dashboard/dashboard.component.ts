@@ -11,6 +11,17 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class DashboardComponent  implements  OnInit {
 
   public habitData : HabitDTO[] = [];
+  habits: HabitDTO[] = [
+    { id: 1, title: 'Exercise' },
+    { id: 2, title: 'Read' },
+    { id: 3, title: 'Meditate' }
+  ];
+
+  reminders: Notification[] = [
+    { id: 1, title: 'Call mom' },
+    { id: 2, title: 'Pay bills' },
+    { id: 3, title: 'Buy groceries' }
+  ];
 
   constructor(
     private modalService : NgbModal
@@ -24,7 +35,6 @@ export class DashboardComponent  implements  OnInit {
   public openModalCreateHabit() {
     const modalRef = this.modalService.open(ModalAddHabitComponent);
     modalRef.closed.subscribe( result => {
-
     })
   }
 
@@ -32,4 +42,9 @@ export class DashboardComponent  implements  OnInit {
 
   }
 
+}
+
+export interface Notification {
+  id?: number;
+  title?: string;
 }

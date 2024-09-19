@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoginModule} from "./pages/login/login.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     AppRoutingModule,
     LoginModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

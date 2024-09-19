@@ -1,38 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private isAuthenticated = false;
-  private users: { username: string, password: string }[] = [
-    { username: 'admin', password: 'password' } // Utente di esempio
-  ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
-  // Login esistente
-  login(username: string, password: string): boolean {
-    const user = this.users.find(u => u.username === username && u.password === password);
-    if (user) {
-      this.isAuthenticated = true;
-      this.router.navigate(['/home']);
-      return true;
-    }
-    return false;
+  // Funzione di login
+  login(username: string, password: string): Observable<boolean> {
+    return this.http.post<{ success: boolean }>('//localhost:8080/auth/login', { username, password }).pipe(
+      tap(response => {
+        if (response.success) {
+          this.isAuthenticated = true;
+          this.router.navigate(['/home']);
+        }
+      }),
+      map(response => response.success) // Trasforma { success: boolean } in boolean
+    );
   }
 
   // Funzione di registrazione
-  register(username: string, password: string): boolean {
-    const userExists = this.users.some(u => u.username === username);
-    if (!userExists) {
-      this.users.push({ username, password });
-      this.isAuthenticated = true;
-      this.router.navigate(['/dashboard']); // Redirige dopo la registrazione
-      return true;
-    }
-    return false; // Restituisce false se l'utente esiste già
+  register(username: string, password: string): Observable<boolean> {
+    return this.http.post<{ success: boolean }>('//localhost:8080/auth/signup', { username, password }).pipe(
+      tap(response => {
+        if (response.success) {
+          this.isAuthenticated = true;
+          this.router.navigate(['/dashboard']); // Redirige dopo la registrazione
+        }
+      }),
+      map(response => response.success) // Trasforma { success: boolean } in boolean
+    );
   }
 
   logout(): void {

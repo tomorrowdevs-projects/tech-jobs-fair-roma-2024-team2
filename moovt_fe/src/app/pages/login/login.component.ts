@@ -1,8 +1,6 @@
-import {Component} from '@angular/core';
-import {AuthService} from "../../services/auth.service";
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { UserDTO } from "../../models/userDTO";
-
+import { Component } from '@angular/core';
+import { AuthService } from "../../services/auth.service";
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
@@ -32,10 +30,16 @@ export class LoginComponent {
 
   onLogin() {
     if (!this.isRegisterMode) {
-      const isSuccess = this.authService.login(this.username, this.password);
-      if (!isSuccess) {
-        this.errorMessage = 'Credenziali non valide. Riprova.';
-      }
+      this.authService.login(this.username, this.password).subscribe({
+        next: (isSuccess) => {
+          if (!isSuccess) {
+            this.errorMessage = 'Credenziali non valide. Riprova.';
+          }
+        },
+        error: () => {
+          this.errorMessage = 'Errore durante il login. Riprova più tardi.';
+        }
+      });
     } else {
       this.onRegister();
     }
@@ -46,18 +50,21 @@ export class LoginComponent {
       this.errorMessage = 'Le password non coincidono. Riprova.';
       return;
     }
-    const isSuccess = this.authService.register(this.username, this.password);
-    if (!isSuccess) {
-      this.errorMessage = 'Username già esistente. Scegline un altro.';
-    }
+
+    this.authService.register(this.username, this.password).subscribe({
+      next: (isSuccess) => {
+        if (!isSuccess) {
+          this.errorMessage = 'Username già esistente. Scegline un altro.';
+        }
+      },
+      error: () => {
+        this.errorMessage = 'Errore durante la registrazione. Riprova più tardi.';
+      }
+    });
   }
 
   toggleMode() {
     this.isRegisterMode = !this.isRegisterMode;
     this.errorMessage = ''; // Resetta eventuali messaggi di errore
   }
-
 }
-
-
-
