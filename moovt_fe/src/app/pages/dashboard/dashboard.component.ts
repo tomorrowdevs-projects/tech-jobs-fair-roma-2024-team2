@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HabitDTO} from "../../models/habitDTO";
+import { ModalAddHabitComponent } from "./modal-add-habit/modal-add-habit.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,16 +12,24 @@ export class DashboardComponent  implements  OnInit {
 
   public habitData : HabitDTO[] = [];
 
+  constructor(
+    private modalService : NgbModal
+  ) {
+  }
+
   ngOnInit() {
     this.init();
   }
 
-  private init() {
+  public openModalCreateHabit() {
+    const modalRef = this.modalService.open(ModalAddHabitComponent);
+    modalRef.closed.subscribe( result => {
 
+    })
   }
 
-  public openModalCreateHabit() {
-    //TODO: Inserire apertura modale stepper con form per creare nuova habit
+  private init() {
+
   }
 
 }

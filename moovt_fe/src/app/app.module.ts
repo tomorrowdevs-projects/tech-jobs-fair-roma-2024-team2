@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoginModule} from "./pages/login/login.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {LoginModule} from "./pages/login/login.module";
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
+    NgbModule
   ],
   providers: [
     provideClientHydration()
