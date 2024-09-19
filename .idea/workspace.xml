@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b22b98a-5b3e-4690-8c6f-4cea73ef9c34" name="Changes" comment="MR - Merge be">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/src/app/pages/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/src/app/pages/dashboard/dashboard.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/src/app/pages/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/src/app/pages/dashboard/dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/src/app/pages/dashboard/dashboard.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/src/app/pages/dashboard/dashboard.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/src/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/tsconfig.app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moovt_fe/tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/tsconfig.spec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moovt_fe/src/app/models/userDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/src/app/models/userDTO.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moovt_fe/src/app/pages/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/moovt_fe/src/app/pages/login/login.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +87,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726521849902</updated>
-      <workItem from="1726768257034" duration="1334000" />
+      <workItem from="1726768257034" duration="1748000" />
     </task>
     <task id="LOCAL-00001" summary="MR - Merge be">
       <option name="closed" value="true" />

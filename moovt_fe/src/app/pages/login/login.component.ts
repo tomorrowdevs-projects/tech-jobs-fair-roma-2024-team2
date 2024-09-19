@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { UserDTO } from "../../models/userDTO";
 
 
 @Component({
