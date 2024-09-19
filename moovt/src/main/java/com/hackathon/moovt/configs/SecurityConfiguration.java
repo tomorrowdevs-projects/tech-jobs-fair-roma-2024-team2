@@ -30,22 +30,20 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
+        http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**", "/welcome")  // Consenti accesso a /auth/** e /welcome
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+                .requestMatchers("/auth/**").permitAll()  // Permetti l'accesso a /auth
+                .requestMatchers("/habits/**").authenticated()  // Permetti l'accesso a /habits solo agli utenti autenticati
+                .anyRequest().authenticated()  // Richiedi autenticazione per tutte le altre richieste
                 .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {

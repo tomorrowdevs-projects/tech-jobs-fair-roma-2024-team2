@@ -24,11 +24,11 @@ public class User implements UserDetails {
 
     @Setter
     @Getter
-    private String username;  // Usato per l'autenticazione
+    private String username;
 
     @Setter
     @Getter
-    private String email;  // Campo email per la registrazione e altri usi, ma non per l'autenticazione
+    private String email;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
