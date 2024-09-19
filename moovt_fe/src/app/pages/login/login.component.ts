@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
+import { Router } from '@angular/router'; // Importa Router per gestire il redirect
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -26,13 +27,17 @@ export class LoginComponent {
   errorMessage: string = '';
   isRegisterMode: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
     if (!this.isRegisterMode) {
       this.authService.login(this.username, this.password).subscribe({
         next: (isSuccess) => {
-          if (!isSuccess) {
+          if (isSuccess) {
+            // Resetta il messaggio di errore e fai il redirect
+            this.errorMessage = '';
+            this.router.navigate(['/dashboard']); // Redirect alla dashboard
+          } else {
             this.errorMessage = 'Credenziali non valide. Riprova.';
           }
         },
@@ -53,7 +58,11 @@ export class LoginComponent {
 
     this.authService.register(this.username, this.password).subscribe({
       next: (isSuccess) => {
-        if (!isSuccess) {
+        if (isSuccess) {
+          // Resetta il messaggio di errore e fai il redirect
+          this.errorMessage = '';
+          this.router.navigate(['/dashboard']); // Redirect alla dashboard
+        } else {
           this.errorMessage = 'Username già esistente. Scegline un altro.';
         }
       },
