@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
+import { Router } from '@angular/router';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -26,13 +27,16 @@ export class LoginComponent {
   errorMessage: string = '';
   isRegisterMode: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
     if (!this.isRegisterMode) {
       this.authService.login(this.username, this.password).subscribe({
         next: (isSuccess) => {
-          if (!isSuccess) {
+          if (isSuccess) {
+            this.errorMessage = '';
+            this.router.navigate(['/dashboard']);
+          } else {
             this.errorMessage = 'Credenziali non valide. Riprova.';
           }
         },
@@ -53,7 +57,10 @@ export class LoginComponent {
 
     this.authService.register(this.username, this.password).subscribe({
       next: (isSuccess) => {
-        if (!isSuccess) {
+        if (isSuccess) {
+          this.errorMessage = '';
+          this.router.navigate(['/dashboard']);
+        } else {
           this.errorMessage = 'Username già esistente. Scegline un altro.';
         }
       },
@@ -65,6 +72,6 @@ export class LoginComponent {
 
   toggleMode() {
     this.isRegisterMode = !this.isRegisterMode;
-    this.errorMessage = ''; // Resetta eventuali messaggi di errore
+    this.errorMessage = '';
   }
 }
