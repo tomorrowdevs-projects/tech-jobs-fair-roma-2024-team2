@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     private final JwtService jwtService;
-
     private final AuthenticationService authenticationService;
 
     public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
@@ -33,7 +32,7 @@ public class AuthenticationController {
             User registeredUser = authenticationService.signup(registerUserDto);
             return ResponseEntity.ok(registeredUser);
         } catch (Exception e) {
-            e.printStackTrace();  // Questo stamperà lo stack trace nel log del server
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }
     }
@@ -44,7 +43,10 @@ public class AuthenticationController {
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime());
+        LoginResponse loginResponse = new LoginResponse()
+                .setToken(jwtToken)
+                .setExpiresIn(jwtService.getExpirationTime())
+                .setWelcomeUrl("/welcome");
 
         return ResponseEntity.ok(loginResponse);
     }

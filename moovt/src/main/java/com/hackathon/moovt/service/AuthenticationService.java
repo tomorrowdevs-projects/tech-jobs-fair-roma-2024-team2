@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationService {
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationService(
@@ -29,25 +27,26 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    // Registrazione con username e email
     public User signup(RegisterUserDto input) {
-
         User user = new User();
-        user.setName(input.getFullName());
-        user.setEmail(input.getEmail());
+        user.setUsername(input.getUsername());  // Usa username per l'autenticazione
+        user.setEmail(input.getEmail());        // Mantieni l'email per l'informazione
         user.setPassword(passwordEncoder.encode(input.getPassword()));
 
         return userRepository.save(user);
     }
 
+    // Autenticazione solo tramite username
     public User authenticate(LoginUserDto input) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        input.getEmail(),
+                        input.getUsername(),  // Usa solo username per login
                         input.getPassword()
                 )
         );
 
-        return userRepository.findByEmail(input.getEmail())
+        return userRepository.findByUsername(input.getUsername())  // Cerca solo per username
                 .orElseThrow();
     }
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 public class LoginResponse {
     private String token;
     private long expiresIn;
+    private String welcomeUrl;
 
     public LoginResponse setToken(String token) {
         this.token = token;
@@ -27,4 +28,14 @@ public class LoginResponse {
     public long getExpiresIn() {
         return expiresIn;
     }
+
+    public String getWelcomeUrl() {
+        return welcomeUrl;
+    }
+
+    public LoginResponse setWelcomeUrl(String welcomeUrl) {
+        this.welcomeUrl = welcomeUrl;
+        return this;
+    }
+
 }

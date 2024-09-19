@@ -9,18 +9,26 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "userMoovt")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Setter
+    @Getter
     private String password;
-    private String name;
-    private String email;
+
+    @Setter
+    @Getter
+    private String username;  // Usato per l'autenticazione
+
+    @Setter
+    @Getter
+    private String email;  // Campo email per la registrazione e altri usi, ma non per l'autenticazione
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -29,12 +37,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
-    }
-
-    public User setEmail(String email) {
-        this.email = email;
-        return this;
+        return username;  // Usare username per autenticazione
     }
 
     @Override
