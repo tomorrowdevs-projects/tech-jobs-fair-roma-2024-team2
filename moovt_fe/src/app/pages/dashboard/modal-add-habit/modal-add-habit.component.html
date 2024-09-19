@@ -1,0 +1,16 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h1 class="modal-title" id="modal-basic-title">Crea habit</h1>
+    <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="btn-close" type="button"></button>
+  </div>
+  <div class="modal-body">
+    Hellooooo
+  </div>
+  <div class="modal-footer">
+    <button (click)="modal.close('Save click')" class="btn btn-outline-secondary" type="button">Save</button>
+  </div>
+</ng-template>
+
+
+<hr />
+

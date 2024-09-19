@@ -1,0 +1,36 @@
+<div class="login-container">
+  <h2 *ngIf="!isRegisterMode; else registerTitle">Login</h2>
+  <ng-template #registerTitle>
+    <h2>Registrazione</h2>
+  </ng-template>
+
+  <form (ngSubmit)="onLogin()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username"[(ngModel)]="username" name="username" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+    </div>
+
+
+    <div *ngIf="isRegisterMode" class="mb-3">
+      <label for="confirmPassword">Conferma Password:</label>
+      <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary"  [disabled]="!username || !password">
+      {{ isRegisterMode ? 'Registrati' : 'Login' }}
+    </button>
+
+  </form>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+  <p>
+    <a (click)="toggleMode()">
+      {{ isRegisterMode ? 'Hai già un account? Accedi' : 'Non hai un account? Registrati' }}
+    </a>
+  </p>
+</div>

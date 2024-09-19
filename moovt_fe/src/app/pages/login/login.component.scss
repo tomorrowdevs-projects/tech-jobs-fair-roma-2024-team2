@@ -1,0 +1,24 @@
+.login-container {
+  max-width: 400px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Animazione fade-in/out */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+form {
+  animation: fadeInOut 0.5s ease;
+}
