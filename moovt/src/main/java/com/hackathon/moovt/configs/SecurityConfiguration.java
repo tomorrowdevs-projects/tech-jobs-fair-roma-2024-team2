@@ -34,7 +34,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**").permitAll()  // Permetti l'accesso a tutti gli endpoint di autenticazione
+                .requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()  // Richiedi autenticazione per tutte le altre richieste
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

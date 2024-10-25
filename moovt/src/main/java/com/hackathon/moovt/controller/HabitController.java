@@ -24,7 +24,6 @@ public class HabitController {
     // Crea un nuovo habit per l'utente loggato
     @PostMapping
     public ResponseEntity<Habit> createHabit(@RequestBody Habit habit, Authentication authentication) {
-        System.out.println("ciao come butta?");
         // Estrai l'oggetto User dall'oggetto Authentication
         User user = (User) authentication.getPrincipal(); // Cast esplicito a User
         habit.setUser(user); // Imposta l'utente sull'habit
@@ -35,7 +34,7 @@ public class HabitController {
     // Ottieni tutte le habit dell'utente loggato
     @GetMapping
     public List<Habit> getUserHabits(Authentication authentication) {
-        User user = (User) authentication.getPrincipal(); // Ottiene l'utente loggato
+        User user = (User) authentication.getPrincipal();
         return habitService.getHabitsByUser(user);
     }
 
